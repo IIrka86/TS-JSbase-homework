@@ -114,7 +114,7 @@ function drawCalendar(year, month, htmlEl) {
 
 
 /**
- * Написать функцию `isDeepEqual`
+ * Написать функцию `isDeepEqual` ,
  * которая принимает на вход двe переменных
  * и проверяет идентичны ли они по содержимому. Например
  * @param {*} objA
@@ -144,4 +144,54 @@ function isDeepEqual(objA, objB) {
     }
   }
   return result;
+}
+
+/**
+ * Написать тесты и саму функцию `spiral`,
+ * которая принимает на вход двумерный массив
+ * и возвращает одномерный массив с элементами
+ * расположенными по спирали. Матрица не обязательно
+ * имеет одинаковые размеры по обеим сторонам. Примеры:
+ * @param {[*]} array
+ * @return {[*]} одномерный массив чисел спирали
+ */
+
+function spiral(array) {
+    var result = [];
+    while (array.length > 0){
+        result = result.concat(array.shift());
+        for(var i = 0; i < array.length - 1; i++){
+            result = result.concat(array[i].pop());
+        }
+        if(array.length > 0){
+            result = result.concat(array.pop().reverse());
+        }
+        for(var j = array.length - 1; j > 0; j--){
+            result = result.concat(array[j].shift());
+        }
+    }
+    return result;
+}
+
+/**
+ * Написать тесты и саму функцию `quadraticEquation`,
+ * которая на вход принимает коэффициенты квадратного уравнения,
+ * а возвращает массив с вещественными корнями этого уравнения (если они есть).
+ * @param {*} a
+ * @param {*} b
+ * @param {*} c
+ * @return {[*]} корни уравнения или пустой массив, если корней нет
+ */
+function quadraticEquation(a, b, c) {
+    var result = [];
+    var d = b * b - 4 * a * c;
+    if(d === 0){
+        result.push(-b/2.0);
+        return result;
+    }
+    if(d > 0){
+        result.push((-b + Math.sqrt(d)) / 2.0);
+        result.push((-b - Math.sqrt(d)) / 2.0);
+    }
+    return result;
 }
